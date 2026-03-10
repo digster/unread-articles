@@ -82,5 +82,8 @@ def sync(
     typer.echo(f"Saved {len(urls)} URLs to {urls_path}")
 
     typer.echo("Committing and pushing...")
-    commit_and_push(files=[urls_path], message=message)
-    typer.echo("Done!")
+    committed = commit_and_push(files=[urls_path], message=message)
+    if committed:
+        typer.echo("Done!")
+    else:
+        typer.echo("No changes to commit — URLs are already up to date.")
