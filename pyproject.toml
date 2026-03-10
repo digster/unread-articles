@@ -1,0 +1,30 @@
+[project]
+name = "unread-articles"
+version = "0.1.0"
+description = "Fetch bookmarked URLs from Raindrop.io by tag and serve a random redirect via GitHub Pages"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "typer>=0.15.0",
+    "httpx>=0.28.0",
+    "python-dotenv>=1.1.0",
+]
+
+[project.scripts]
+unread-articles = "unread_articles.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/unread_articles"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-httpx>=0.35.0",
+]
